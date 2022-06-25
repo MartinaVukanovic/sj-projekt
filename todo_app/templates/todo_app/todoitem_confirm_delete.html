@@ -1,0 +1,44 @@
+<!-- todo_list/todo_app/templates/todo_app/todoitem_confirm_delete.html -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+      .title {
+    text-align: center;
+    margin-left: 10px;
+    color: #183a37;
+  }
+  .button {
+    margin-left: 45px;
+    margin-top: 10px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(58, 125, 68, 0.1);
+    border: 2px solid #0a5315;
+    border-radius: 29px;
+  }
+  .red {
+    background: rgba(125, 58, 58, 0.1);
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 29px;
+  }
+  .buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+  }
+</style>
+<h1 class="title">Delete To-do Item</h1>
+
+<p>Are you sure you want to delete the item: <b>{{ object.title }}</b>
+    <p>from the list <i>{{ todo_list.title }}</i>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input class="button red" value="Yes, delete." type="submit">
+        <input class="button" value="Cancel" type="button" onclick=location.href='{% url "list" todo_list.id %}'; />
+    </form>
+
+    {% endblock %}

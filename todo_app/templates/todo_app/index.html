@@ -1,0 +1,56 @@
+<!-- todo_list/todo_app/templates/todo_app/index.html -->
+{% extends "base.html" %} {% block content %}
+<!--index.html-->
+<style>
+  .title {
+    text-align: center;
+    margin-left: 10px;
+    color: #183a37;
+  }
+  .list-item {
+    background: #6cab75;
+    border-radius: 30px 2px;
+    width: 25vw;
+    padding: 20px 40px;
+    color: white;
+    letter-spacing: 1px;
+    margin: 20px 0px;
+  }
+  .button {
+    margin-left: 25px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(58, 125, 68, 0.1);
+    border: 2px solid #0A5315;
+    border-radius: 29px;
+  }
+  .button-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+</style>
+{% if object_list %}
+<h1 class="title">all my lists</h1>
+{% endif %}
+<ul style="list-style-type: none">
+  {% for todolist in object_list %}
+  <li class="list-item">
+    <div role="button" onclick="location.href='{% url "list" todolist.id %}'">
+      {{ todolist.title }}
+    </div>
+  </li>
+  {% empty %}
+  <h1 class="tittle">You have no lists!</h1>
+  {% endfor %}
+</ul>
+<p class="button-container">
+  <input 
+    class="button"
+    value="Add a new list"
+    type="button"
+    onclick="location.href='{% url "list-add" %}'"/>
+</p>
+
+{% endblock %}

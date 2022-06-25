@@ -1,0 +1,44 @@
+<!-- todo_list/todo_app/templates/base.html -->
+<!-- Base template -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--Simple.css-->
+    <title>Django To-do Lists</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .logo {
+        margin: -10px 30px;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: left;
+      }
+      .container {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        width: 92vw;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="logo">
+      <h1  onclick="location.href='{% url "index" %}'">Django To-do Lists</h1>
+    </div>
+    <div class="container">
+      <div>
+        {% block content %} This content will be replaced by different html code
+        for each page. {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

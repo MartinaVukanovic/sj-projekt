@@ -1,0 +1,69 @@
+<!-- todo_list/todo_app/templates/todo_app/todo_list.html -->
+<style>
+  .title {
+    text-align: center;
+    margin-left: 10px;
+    color: #183a37;
+  }
+  .list-item {
+    background: #6cab75;
+    border-radius: 30px 2px;
+    width: 25vw;
+    padding: 20px 40px;
+    color: white;
+    letter-spacing: 1px;
+    margin: 20px 0px;
+  }
+  .button {
+    margin-left: 25px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(58, 125, 68, 0.1);
+    border: 2px solid #0a5315;
+    border-radius: 29px;
+  }
+  .red {
+    background: rgba(125, 58, 58, 0.1);
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 29px;
+  }
+  .button-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .list {
+    padding: 10px;
+    border-radius: 15px;
+  }
+</style>
+{% extends "base.html" %} {% block content %}
+<div>
+  <div>
+    <div>
+      <h1 class="title">Edit list:</h1>
+      <h2>{{ todo_list.title|upper}}</h2>
+    </div>
+    <ul>
+      {% for todo in object_list %}
+      <li class="list">
+        <div>
+          <div role="button" 
+          onclick="location.href='{% url "item-update" todo_list.id todo.id %}'"> 
+          {{ todo.title }} (Due {{ todo.due_date|date:"l, F j" }})
+        </div>
+      </li>
+      {% empty %}
+      <p>There are no to-do items in this list.</p>
+      {% endfor %}
+    </ul>
+    <p>
+      <input class="button" value="Add a new item" type="button"
+      onclick="location.href='{% url "item-add" todo_list.id %}'" /> <input
+      class="button red" value="Delete this list" type="button"
+      onclick="location.href='{% url "list-delete" todo_list.id %}'" />
+    </p>
+  </div>
+</div>
+{% endblock %}
