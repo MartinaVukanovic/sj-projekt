@@ -1,4 +1,3 @@
-# todo_list/todo_app/models.py
 from django.utils import timezone
 
 from django.db import models
